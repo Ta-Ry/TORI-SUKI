@@ -17,5 +17,7 @@
 
 ## 設計書
 
+<https://drive.google.com/drive/folders/1BaGhkxqEOTmdCS0wUHVDRj4OyXhSMH7A?usp=sharing>
+
 ### 機能一覧
 <https://docs.google.com/spreadsheets/d/1IqRAqS50XyBn-eJ8mQLe0G7M85gYAAVlWs0gEMaTZ5g/edit#gid=0>
