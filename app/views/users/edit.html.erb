@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <% if @user.errors.any? %>
+    <div id="error-explanation">
+      <h2><%= @user.errors.count %> errors prohibited this post from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <div class="col-xs-3">
+
+      <h2>会員情報</h2>
+
+
+      <%= form_for(@user) do |f| %>
+
+      <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+      <div class="field">
+        <%= f.label :Image %><br>
+        <%= f.attachment_field :profile_image %>
+      </div>
+      <div class="field">
+        <%= f.label :Introduction %>
+        <%= f.text_area :introduction %>
+      </div>
+      <div class="actions">
+        <%= f.submit "会員情報更新" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

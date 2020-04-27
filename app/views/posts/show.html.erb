@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row">
+
+    <% if flash[:notice] %>
+    <div>
+      <p class="flash"><%= flash[:notice] %></p>
+    </div>
+    <% end %>
+
+    <%= render 'posts/link', post: Post.new, user: @user %>
+    <div class="col-xs-9">
+      <h2>投稿詳細</h2>
+      <div class="blog-box-content">
+        <table class="table">
+          <thead>
+            <tr></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <%= link_to user_path(@post.user.id) do %>
+                <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, class: "pull-left profile-thumb", fallback: "no_image.jpg" %>
+                <br>
+                <%= @user.name %>
+
+                <% end %>
+              </td>
+              <td>
+               <p class="title">
+                 <%= link_to post_path(@post) do %>
+                 <%= @post.title %>
+                 <% end %>
+               </p>
+             </td>
+             <td>
+              <p class="opinion">
+                <%= @post.body %>
+              </p>
+              <td id="favorite-<%= @post.id %>">
+                <%#= render partial: "favorite", locals: {post: @post } %>
+              </td>
+              </td>
+              <td>
+              <div>
+                <a>コメント数: <%= @post.post_comments.count %></a>
+              </div>
+              </td>
+              <% if @post.user.id == current_user.id %>
+              <td><%= link_to "Edit", edit_post_path(@post), class:"btn btn-success" %></td>
+              <td><%= link_to 'Destroy', post_path(@post), method: :delete, class:"btn btn-danger", data: { confirm: '本当に消しますか？' } %></td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+        <div>
+          <table class="table">
+          <thead>
+            <tr>
+              <td></td>
+              <td>Name</td>
+              <td>Comment</td>
+              <td></td>
+              </tr>
+          </thead>
+
+          <tbody id="comment-<%= @post.id %>">
+          <%# @post.post_comments.each do |post_comment| %>
+          <%#= render partial: 'comment_list', locals: { post_comment: post_comment } %>
+          <%# end %>
+          </tbody>
+        </table>
+
+        </div>
+        <div>
+        <% if user_signed_in? %>
+      <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+          <%#= render partial: 'comment', locals: { post: @post, post_comment: @post_comment } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

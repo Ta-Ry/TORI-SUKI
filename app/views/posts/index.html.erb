@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+<% if @post.errors.any? %>
+  <div id="error-explanation">
+    <h2><%= @post.errors.count %> errors prohibited this post from being saved:</h2>
+        <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+  </div>
+<% end %>
+<%= render 'posts/link', post: Post.new, user: @user %>
+    <div class="col-xs-9">
+<h2>投稿</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinon</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td>
+          <%= link_to user_path(post.user.id) do %>
+          <%= attachment_image_tag post.user, :profile_image, :fill, 100, 100, class: "pull-left profile-thumb", fallback: "no_image.jpg" %>
+          <% end %>
+        </td>
+        <td>
+           <%= link_to post_path(post.id) do %>
+           <%= post.main_comment %>
+           <% end %>
+        </td>
+        <td><%= post.attachment_image_tag post, :post_image, :fill, 100, 100, class: "pull-left profile-thumb" %></td>
+        <td id="favorite-<%= post.id %>">
+          <%#= render partial: "favorite", locals: { post: post } %>
+       </td>
+       <td>
+         <div>
+           <a>コメント数: <%= post.post_comments.count %></a>
+         </div>
+       </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+    </div>
+  </div>
+</div>

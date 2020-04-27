@@ -1,0 +1,13 @@
+<div class="container">
+	<div class="center-block">
+		<h2 class="text-center">本当に退会しますか？</h2>
+		<p class="text-center">退会すると、会員登録情報が閲覧できなくなります。</p>
+		<p class="text-center">退会する場合は、「退会する」をクリックしてください</p>
+		<div class="form-group row justify-content-center">
+			<div>
+				<%= link_to '退会しない', user_path(current_user), class: "btn btn-info", type: "button" %>
+				<%= link_to '退会する', users_hide_path(current_user), data: { confirm: "本当に退会しますか？" }, method: :put, class: "btn btn-danger", type: "button" %>
+			</div>
+		</div>
+	</div>
+</div>

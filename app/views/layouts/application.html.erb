@@ -1,15 +1,62 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>TORISuki</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>NCake</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
+</head>
 
-  <body>
+<body>
+  <header>
+    <nav class="navbar navbar-default" style="background-color: #EEE8AA; margin-bottom: 0px;">
+      <div class="container-field">
+        <div class="navbar-header">
+          <p class="navbar-brand"></p>
+        </div>
+        <div id="navbarEexample7">
+          <a class="navbar-logo" href="/" style="background-color: #EEE8AA;">
+            <%#= image_tag('logo.jpg') %>
+          </a>
+          <ul class="nav navbar-nav navbar-right" style="padding-right: 20px;">
+            <% if user_signed_in? %>
+              <p class="navbar-text" style="font-size: 20px; font-family: Hannari;">ようこそTORI-SUKIへ！！ </p>
+              <li><%= link_to "TOPページへ" , root_path %></li>
+              <li><%= link_to "TORI-SUKIとは？" , home_about_path %></li>
+              <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+              <li><%= link_to "登録情報編集", user_path(current_user.id) %></li>
+              <li><%= link_to "お問合せ", home_contact_path %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to "退会", users_withdrawal_path(current_user) %></li>
+            <% else %>
+              <p class="navbar-text" style="font-size: 20px; font-family: Hannari;">ようこそTORI-SUKIへ！！ </p>
+              <li><%= link_to "TOPページへ" , root_path %></li>
+              <li><%= link_to "TORI-SUKIとは？" , home_about_path %></li>
+              <li><%= link_to "新規登録" , new_user_registration_path %></li>
+              <li><%= link_to "ログイン", user_session_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+    <div class="" style="background-color: #FDF5E6; padding-top: 20px;">
     <%= yield %>
-  </body>
+
+    <footer class="footer">
+      <div class="container">
+
+        <div class="row">
+          <div class='col-xs-6 col-xs-offset-6'>
+            <p>powered by TORI-SUKI運営</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
 </html>

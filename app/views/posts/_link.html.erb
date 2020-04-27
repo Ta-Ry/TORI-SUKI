@@ -1,0 +1,77 @@
+<div class="col-xs-3">
+  <h2>User info</h2>
+    <div class="profile-container">
+
+    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, class: "pull-left profile-thumb", fallback: "no_image.jpg" %>
+    <table class="table">
+      <tbody>
+        <tr>
+      	 <th><p>name</p></th>
+          <th><p><%= user.name %></p></th>
+        </tr>
+        <tr>
+          <th><p>introduction</p></th>
+          <th><p><%= user.introduction %></p></th>
+        </tr>
+        <tr>
+          <th><p>follows</p></th>
+          <th>
+            <div id="follow_count<%= user.id %>">
+            <%= link_to follow_list_path(user) do %>
+            <label>フォロー数: </label> <%= user.relationships.count %>
+            <% end %>
+        </div>
+          </th>
+        </tr>
+        <tr>
+          <th><p>followers</p></th>
+          <th>
+            <div id="follower_count<%= user.id %>">
+            <%= link_to follower_list_path(user) do %>
+            <label>フォロワー数: </label> <%= user.follower_count(user).count %>
+            <% end %>
+        </div>
+          </th>
+        </p></th>
+      </tr>
+    </table>
+    <div class="row">
+      <% if user.id == current_user.id %>
+      <%= link_to edit_user_path(user) do %>
+      <span class="glyphicon glyphicon-wrench col-xs-12 btn btn-default"></span>
+      <% end %>
+      <% else %>
+      <%= render 'users/follow_button', user: @user %>
+      <% end %>
+    </div>
+  </div>
+
+  <h2>新規投稿</h2>
+
+  <%= form_for(post) do |f| %>
+  <% if post.errors.any? %>
+  <div id="error-explanation">
+    <h2><%= post.errors.count %> errors prohibited this post from being saved:</h2>
+    <ul>
+      <% post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="field row">
+    <div class="field">
+      <%= f.label :Comment %><br>
+      <%= f.text_field :main_comment, class: "main_comment col-xs-12" %>
+    </div>
+    <div class="field">
+      <%= f.label :Image %><br>
+      <%= f.text_area :post_image, class: "post_image col-xs-12" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "投稿", :class=>"col-xs-12 btn btn-primary"%>
+    </div>
+  </div>
+  <% end %>
+  </div>
