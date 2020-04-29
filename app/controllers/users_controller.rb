@@ -28,6 +28,9 @@ class UsersController < ApplicationController
     @post = Post.new
   end
 
+  def withdrawal
+  end
+
   def follow_list
     @user = User.find(params[:user_id])
   end
