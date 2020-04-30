@@ -7,7 +7,6 @@
     </div>
     <% end %>
 
-    <%= render 'posts/link', post: Post.new, user: @user %>
     <div class="col-xs-9">
       <h2>投稿詳細</h2>
       <div class="blog-box-content">
@@ -26,18 +25,32 @@
                 <% end %>
               </td>
               <td>
-               <p class="title">
+               <p class="main_comment">
                  <%= link_to post_path(@post) do %>
-                 <%= @post.title %>
+                 <%= @post.main_comment %>
                  <% end %>
                </p>
              </td>
              <td>
               <p class="opinion">
-                <%= @post.body %>
+                <%= attachment_image_tag @post, :post_image, :fill, 100, 100, class: "pull-left profile-thumb" %>
               </p>
               <td id="favorite-<%= @post.id %>">
-                <%#= render partial: "favorite", locals: {post: @post } %>
+                <% if post.favorited_by?(current_user) %>
+                <div>
+                  <%= link_to post_favorites_path(post), method: :delete, remote: true do %>
+                  <i class="glyphicon glyphicon-heart" style="color: red;"></i>
+                  <%= post.favorites.count %>
+                  <% end %>
+                </div>
+                <% else %>
+                <div>
+                  <%= link_to post_favorites_path(post), method: :post, remote: true do %>
+                  <i class="glyphicon glyphicon-heart-empty"></i>
+                  <%= post.favorites.count %>
+                  <% end %>
+                </div>
+                <% end %>
               </td>
               </td>
               <td>
@@ -46,7 +59,6 @@
               </div>
               </td>
               <% if @post.user.id == current_user.id %>
-              <td><%= link_to "Edit", edit_post_path(@post), class:"btn btn-success" %></td>
               <td><%= link_to 'Destroy', post_path(@post), method: :delete, class:"btn btn-danger", data: { confirm: '本当に消しますか？' } %></td>
               <% end %>
             </tr>
@@ -79,4 +91,6 @@
       </div>
     </div>
   </div>
+  <%= render 'posts/link', post: Post.new, user: @user %>
+</div>
 </div>

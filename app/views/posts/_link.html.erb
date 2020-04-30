@@ -17,9 +17,9 @@
           <th><p>follows</p></th>
           <th>
             <div id="follow_count<%= user.id %>">
-            <%= link_to follow_list_path(user) do %>
-            <label>フォロー数: </label> <%= user.relationships.count %>
-            <% end %>
+            <%#= link_to follow_list_path(user) do %>
+            <label>フォロー数: </label> <%#= user.relationships.count %>
+            <%# end %>
         </div>
           </th>
         </tr>
@@ -27,9 +27,9 @@
           <th><p>followers</p></th>
           <th>
             <div id="follower_count<%= user.id %>">
-            <%= link_to follower_list_path(user) do %>
-            <label>フォロワー数: </label> <%= user.follower_count(user).count %>
-            <% end %>
+            <%#= link_to follower_list_path(user) do %>
+            <label>フォロワー数: </label> <%#= user.follower_count(user).count %>
+            <%# end %>
         </div>
           </th>
         </p></th>
@@ -66,9 +66,9 @@
       <%= f.text_field :main_comment, class: "main_comment col-xs-12" %>
     </div>
     <div class="field">
-      <%= f.label :Image %><br>
-      <%= f.text_area :post_image, class: "post_image col-xs-12" %>
-    </div>
+        <%= f.label :Image %><br>
+        <%= f.attachment_field :post_image, class: "main_comment col-xs-12" %>
+      </div>
     <div class="actions">
       <%= f.submit "投稿", :class=>"col-xs-12 btn btn-primary"%>
     </div>
