@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   	@post.user_id = current_user.id
   	if @post.save
   		flash[:notice] = "You have created post successfully."
-  	    redirect_to post_path(post)
+  	    redirect_to post_path(@post)
   	else
   		@posts = Post.all
       @user = current_user
