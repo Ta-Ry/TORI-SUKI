@@ -66,9 +66,13 @@
       <%= f.text_field :main_comment, class: "main_comment col-xs-12" %>
     </div>
     <div class="field">
-        <%= f.label :Image %><br>
-        <%= f.attachment_field :post_image, class: "main_comment col-xs-12" %>
-      </div>
+      <%= f.label :Image %><br>
+      <%= f.attachment_field :post_image, class: "main_comment col-xs-12" %>
+    </div>
+    <div class="field">
+      <%= f.label :tag_list %><br>
+      <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "main_comment col-xs-12" %>
+    </div>
     <div class="actions">
       <%= f.submit "投稿", :class=>"col-xs-12 btn btn-primary"%>
     </div>

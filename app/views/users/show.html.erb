@@ -50,6 +50,9 @@
             <% end %>
             </td>
             <td>
+              <%= render 'posts/tag_list', tag_list: post.tag_list %>
+            </td>
+            <td>
               <div>
                 <a>コメント数: <%= post.post_comments.count %></a>
               </div>

@@ -6,4 +6,5 @@ class Post < ApplicationRecord
         end
   has_many :post_comments, dependent: :destroy
   attachment :post_image
+  acts_as_taggable
 end
