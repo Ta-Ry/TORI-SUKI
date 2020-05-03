@@ -18,17 +18,27 @@
       <%= form_for(@user) do |f| %>
 
       <div class="field">
-        <%= f.label :name %>
+        <%= f.label :ニックネーム %>
         <%= f.text_field :name %>
       </div>
       <div class="field">
-        <%= f.label :Image %><br>
+        <%= f.label :アイコン画像 %><br>
         <%= f.attachment_field :profile_image %>
       </div>
       <div class="field">
-        <%= f.label :Introduction %>
+        <%= f.label :自己紹介 %>
         <%= f.text_area :introduction %>
       </div>
+      <div class="field">
+        <%= f.label :メールアドレス %>
+        <%= f.email_field :email %>
+      </div>
+
+      <div class="field">
+        <%= f.label :電話番号 %>
+        <%= f.text_field :phone_number %>
+      </div>
+
       <div class="actions">
         <%= f.submit "会員情報更新" %>
       </div>

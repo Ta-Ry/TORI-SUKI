@@ -1,6 +1,6 @@
 class RelationshipsController < ApplicationController
-	before_action :set_user
 	  def create
+      @user = User.find(params[:follow_id])
     	following = current_user.follow(@user)
     	following.save
 
@@ -11,6 +11,7 @@ class RelationshipsController < ApplicationController
   	end
 
   	def destroy
+      @user = User.find(params[:follower_id])
     	following = current_user.unfollow(@user)
     	following.destroy
 
@@ -20,9 +21,5 @@ class RelationshipsController < ApplicationController
       end
   	end
 
- 	private
 
-    def set_user
-    	@user = User.find(params[:follow_id])
-    end
 end

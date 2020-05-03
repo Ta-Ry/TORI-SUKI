@@ -16,9 +16,9 @@
         <tr>
           <th><p>follows</p></th>
           <th>
-            <div id="follow_count<%= user.id %>">
+            <div>
             <%#= link_to follow_list_path(user) do %>
-            <label>フォロー数: </label> <%#= user.relationships.count %>
+            <label>フォロー数: </label> <%= user.follow_count(user).count %>
             <%# end %>
         </div>
           </th>
@@ -26,9 +26,9 @@
         <tr>
           <th><p>followers</p></th>
           <th>
-            <div id="follower_count<%= user.id %>">
+            <div>
             <%#= link_to follower_list_path(user) do %>
-            <label>フォロワー数: </label> <%#= user.follower_count(user).count %>
+            <label>フォロワー数: </label> <%= user.follower_count(user).count %>
             <%# end %>
         </div>
           </th>
@@ -41,7 +41,21 @@
       <span class="glyphicon glyphicon-wrench col-xs-12 btn btn-default"></span>
       <% end %>
       <% else %>
-      <%= render 'users/follow_button', user: @user %>
+      <% unless current_user == @user %>
+            <div>
+              <% if current_user.following?(@user) %>
+                <%= form_for(current_user.active_relationships.find_by(follower_id: @user.id), html: { method: :delete }) do |f| %>
+                  <%= hidden_field_tag :follower_id, user.id %>
+                  <%= f.submit 'フォローを外す', class: 'btn btn-danger btn-block' %>
+                <% end %>
+              <% else %>
+                <%= form_for(current_user.active_relationships.build) do |f| %>
+                  <%= hidden_field_tag :follow_id, user.id %>
+                  <%= f.submit 'フォローする', class: 'btn btn-primary btn-block' %>
+                <% end %>
+              <% end %>
+              </div>
+          <% end %>
       <% end %>
     </div>
   </div>
@@ -62,15 +76,15 @@
 
   <div class="field row">
     <div class="field">
-      <%= f.label :Comment %><br>
+      <%= f.label :コメント %><br>
       <%= f.text_field :main_comment, class: "main_comment col-xs-12" %>
     </div>
     <div class="field">
-      <%= f.label :Image %><br>
+      <%= f.label :鳥関連画像 %><br>
       <%= f.attachment_field :post_image, class: "main_comment col-xs-12" %>
     </div>
     <div class="field">
-      <%= f.label :tag_list %><br>
+      <%= f.label :タグ %><br>
       <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "main_comment col-xs-12" %>
     </div>
     <div class="actions">

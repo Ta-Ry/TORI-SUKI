@@ -35,14 +35,14 @@
             <td>
             <% if post.favorited_by?(current_user) %>
             <div>
-              <%= link_to post_favorites_path(post), method: :delete, remote: true do %>
+              <%= link_to post_favorites_path(post), method: :delete do %>
               <i class="glyphicon glyphicon-heart" style="color: red;"></i>
               <%= post.favorites.count %>
               <% end %>
             </div>
             <% else %>
             <div>
-              <%= link_to post_favorites_path(post), method: :post, remote: true do %>
+              <%= link_to post_favorites_path(post), method: :post do %>
               <i class="glyphicon glyphicon-heart-empty"></i>
               <%= post.favorites.count %>
               <% end %>

@@ -16,12 +16,13 @@
     <nav class="navbar navbar-default" style="background-color: #EEE8AA; margin-bottom: 0px;">
       <div class="container-field">
         <div class="navbar-header">
-          <p class="navbar-brand"></p>
+          <p class="navbar-brand">ロゴ追加予定地</p>
         </div>
         <div id="navbarEexample7">
           <a class="navbar-logo" href="/" style="background-color: #EEE8AA;">
-            <%#= image_tag('logo.jpg') %>
+            ここのロゴはlink持ち
           </a>
+          <div class="row">
           <ul class="nav navbar-nav navbar-right" style="padding-right: 20px;">
             <% if user_signed_in? %>
               <p class="navbar-text" style="font-size: 20px; font-family: Hannari;">ようこそTORI-SUKIへ！！ </p>
@@ -41,9 +42,28 @@
             <% end %>
           </ul>
         </div>
+        <div class="row">
+          <div class="col-xs-6 col-xs-offset-4">
+            <ul class="nav navbar-nav justify-content-center" style="padding-right: 20px;">
+              <% if user_signed_in? %>
+                <li><%= link_to "鳥の病院" , home_bird_hospital_path %></li>
+                <li><%= link_to "TOPページへ" , posts_path %></li>
+                <li><%= link_to "TOPページへ" , posts_path %></li>
+                <li><%= link_to "迷い鳥情報" , home_lost_bird_path %></li>
+              <% else %>
+                <li><%= link_to "鳥の病院" , home_bird_hospital_path %></li>
+                <li><%= link_to "TOPページへ" , root_path %></li>
+                <li><%= link_to "TOPページへ" , root_path %></li>
+                <li><%= link_to "迷い鳥情報" , home_lost_bird_path %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+        </div>
       </div>
     </nav>
   </header>
+  
     <div class="" style="background-color: #FDF5E6; padding-top: 20px;">
     <%= yield %>
 

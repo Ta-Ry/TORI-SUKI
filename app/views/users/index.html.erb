@@ -32,13 +32,35 @@
             <td><%= attachment_image_tag user, :profile_image, :fill, 100, 100, class: "pull-left profile-thumb", fallback: "no_image.jpg" %></td>
             <td><%= user.name %></td>
             <td>
-              <%= render 'users/follow_count', user: user %>
+              <div id="follow_count<%= user.id %>">
+              <%#= link_to follow_list_path(user) do %>
+                <label>フォロー数: </label> <%= user.follow.count %>
+              <%# end %>
+              </div>
             </td>
             <td>
-              <%= render 'users/follower_count', user: user %>
+              <div id="follower_count<%= user.id %>">
+              <%#= link_to follower_list_path(user) do %>
+                <label>フォロワー数: </label> <%= user.follower.count %>
+              <%# end %>
+              </div>
             </td>
             <td>
-              <%= render 'users/follow_button', user: user %>
+              <% unless current_user == user %>
+              <div id="follow_form<%= user.id %>">
+              <% if current_user.following?(user) %>
+                <%= form_for(current_user.relationships.find_by(follow_id: user.id), html: { method: :delete }) do |f| %>
+                  <%= hidden_field_tag :follow_id, user.id %>
+                  <%= f.submit 'フォローを外す', class: 'btn btn-danger btn-block' %>
+                <% end %>
+              <% else %>
+                <%= form_for(current_user.relationships.build) do |f| %>
+                  <%= hidden_field_tag :follow_id, user.id %>
+                  <%= f.submit 'フォローする', class: 'btn btn-primary btn-block' %>
+                <% end %>
+              <% end %>
+              </div>
+              <% end %>
             </td>
             <td><a><%= link_to 'Show', user %></a></td>
           </tr>
