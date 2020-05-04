@@ -22,11 +22,6 @@ class UsersController < ApplicationController
       render action: :edit
      end
   end
-  def index
-  	@users = User.all
-  	@user = current_user
-    @post = Post.new
-  end
 
   def withdrawal
   end

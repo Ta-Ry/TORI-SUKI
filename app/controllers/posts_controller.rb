@@ -4,12 +4,18 @@ class PostsController < ApplicationController
   	@posts = Post.all
   	@post = Post.new
     @user = current_user
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}")
+    end
   end
 
   def show
   	@post = Post.find(params[:id])
     @user = @post.user
     @post_comment = PostComment.new
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}")
+    end
   end
 
   def create

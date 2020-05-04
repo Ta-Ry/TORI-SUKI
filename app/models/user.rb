@@ -8,10 +8,10 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   attachment :profile_image
 
-  has_many :active_relationships, class_name: "Relationship", foreign_key: "follow_id", dependent: :destroy
-  has_many :passive_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :following, through: :active_relationships, source: :follow
-  has_many :followers, through: :passive_relationships, source: :follower
+  has_many :active_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
+  has_many :followings, through: :active_relationships, source: :follower
+  has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'follower_id'
+  has_many :followers, through: :passive_relationships, source: :follow
 
   def follow(other_user)
     unless self == other_user
@@ -25,10 +25,8 @@ class User < ApplicationRecord
   end
 
   def following?(other_user)
-    self.following.present?
+    self.followings.include?(other_user)
   end
-  #includeの方がいいかもしれないから聞いた方がいいかも
-  #presentは無理やり
 
   def follow_count(user)
   	Relationship.where(follow_id: user.id)

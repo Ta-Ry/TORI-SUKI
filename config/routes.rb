@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'home/lost_bird'
   get 'home/contact'
   devise_for :users
+  get 'users/follow_list/:user_id' => 'users#follow_list', as: 'follow_list'
+  get 'users/follower_list/:user_id' => 'users#follower_list', as: 'follower_list'
   get 'users/withdrawal', to: 'users#withdrawal'
   put "/users/:id/hide" => "users#hide", as: 'users_hide'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

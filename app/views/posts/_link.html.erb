@@ -1,35 +1,33 @@
 <div class="col-xs-3">
-  <h2>User info</h2>
+  <h2>会員情報</h2>
     <div class="profile-container">
 
     <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, class: "pull-left profile-thumb", fallback: "no_image.jpg" %>
     <table class="table">
       <tbody>
         <tr>
-      	 <th><p>name</p></th>
+      	 <th><p>ニックネーム</p></th>
           <th><p><%= user.name %></p></th>
         </tr>
         <tr>
-          <th><p>introduction</p></th>
+          <th><p>自己紹介</p></th>
           <th><p><%= user.introduction %></p></th>
         </tr>
         <tr>
-          <th><p>follows</p></th>
           <th>
             <div>
-            <%#= link_to follow_list_path(user) do %>
+            <%= link_to follow_list_path(user) do %>
             <label>フォロー数: </label> <%= user.follow_count(user).count %>
-            <%# end %>
+            <% end %>
         </div>
           </th>
         </tr>
         <tr>
-          <th><p>followers</p></th>
           <th>
             <div>
-            <%#= link_to follower_list_path(user) do %>
+            <%= link_to follower_list_path(user) do %>
             <label>フォロワー数: </label> <%= user.follower_count(user).count %>
-            <%# end %>
+            <% end %>
         </div>
           </th>
         </p></th>
@@ -38,14 +36,14 @@
     <div class="row">
       <% if user.id == current_user.id %>
       <%= link_to edit_user_path(user) do %>
-      <span class="glyphicon glyphicon-wrench col-xs-12 btn btn-default"></span>
+      <span class="glyphicon glyphicon-wrench col-xs-12 btn btn-default">会員情報編集</span>
       <% end %>
       <% else %>
-      <% unless current_user == @user %>
+          <% unless current_user == user %>
             <div>
-              <% if current_user.following?(@user) %>
-                <%= form_for(current_user.active_relationships.find_by(follower_id: @user.id), html: { method: :delete }) do |f| %>
-                  <%= hidden_field_tag :follower_id, user.id %>
+              <% if current_user.following?(user) %>
+                <%= form_for(current_user.active_relationships.find_by(follower_id: user.id), html: { method: :delete }) do |f| %>
+                  <%= hidden_field_tag :follow_id, user.id %>
                   <%= f.submit 'フォローを外す', class: 'btn btn-danger btn-block' %>
                 <% end %>
               <% else %>

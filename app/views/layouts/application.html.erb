@@ -23,13 +23,14 @@
             ここのロゴはlink持ち
           </a>
           <div class="row">
+          <div class="col-xs-6 col-xs-offset-3">
           <ul class="nav navbar-nav navbar-right" style="padding-right: 20px;">
             <% if user_signed_in? %>
               <p class="navbar-text" style="font-size: 20px; font-family: Hannari;">ようこそTORI-SUKIへ！！ </p>
               <li><%= link_to "TOPページへ" , posts_path %></li>
               <li><%= link_to "TORI-SUKIとは？" , home_about_path %></li>
               <li><%= link_to "マイページ", user_path(current_user.id) %></li>
-              <li><%= link_to "登録情報編集", edit_user_path(current_user.id) %></li>
+              <!-- <li><%= link_to "登録情報編集", edit_user_path(current_user.id) %></li> -->
               <li><%= link_to "お問合せ", home_contact_path %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
               <li><%= link_to "退会", users_withdrawal_path(current_user) %></li>
@@ -41,8 +42,9 @@
               <li><%= link_to "ログイン", user_session_path %></li>
             <% end %>
           </ul>
-        </div>
-        <div class="row">
+          </div>
+          </div>
+          <div class="row">
           <div class="col-xs-6 col-xs-offset-4">
             <ul class="nav navbar-nav justify-content-center" style="padding-right: 20px;">
               <% if user_signed_in? %>
@@ -63,7 +65,7 @@
       </div>
     </nav>
   </header>
-  
+
     <div class="" style="background-color: #FDF5E6; padding-top: 20px;">
     <%= yield %>
 
