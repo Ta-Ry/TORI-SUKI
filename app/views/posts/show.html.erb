@@ -31,10 +31,7 @@
                  <% end %>
                </p>
              </td>
-             <td>
-              <p class="opinion">
-                <%= attachment_image_tag @post, :post_image, :fill, 100, 100, class: "pull-left profile-thumb" %>
-              </p>
+
               <td id="favorite-<%= @post.id %>">
                 <% if @post.favorited_by?(current_user) %>
                 <div>
@@ -52,12 +49,6 @@
                 </div>
                 <% end %>
               </td>
-              </td>
-              <td>
-              <div>
-                <a>コメント数: <%= @post.post_comments.count %></a>
-              </div>
-              </td>
               <td>
                 <%= render 'posts/tag_list', tag_list: @post.tag_list %>
               </td>
@@ -68,12 +59,17 @@
           </tbody>
         </table>
         <div>
+              <p class="opinion", style="">
+                <%= attachment_image_tag @post, :post_image, :fill, 500, 500, class: "pull-left profile-thumb" %>
+              </p>
+        </div>
+        <div>
           <table class="table">
           <thead>
             <tr>
               <td></td>
-              <td>Name</td>
-              <td>Comment</td>
+              <td>コメント者名</td>
+              <td>コメント</td>
               <td></td>
               </tr>
           </thead>

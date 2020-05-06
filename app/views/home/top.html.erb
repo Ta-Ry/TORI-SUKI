@@ -1,1 +1,46 @@
-home#top
+<div style="background-size: cover; background-image: url(<%= image_path("shikun2002021827_TP_V.jpg") %>; ">
+	<div class="container">
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3" style="text-align:center;">
+			<h1>
+			　　　　　　T</br>
+			　　　　　　　O</br>
+			　　　　　　　　R</br>
+			　　　　　　　　　I</br>
+			　　　　　　　　　　が</br>
+			　　　　　　　　　　　S</br>
+			　　　　　　　　　　　　U</br>
+			　　　　　　　　　　　　　K</br>
+			　　　　　　　　　　　　　　I</br>
+			　　　　　　　　　　　　　　な</br>
+			　　　　　　　　　　　　　　の</br>
+			　　　　　　　　　　　　　　で</br>
+			　　　　　　　　　　　　　　す</br>
+			</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6" style="text-align:center; color: white;">
+			<h1>新規会員登録はこちら！</br>
+			↓ ↓ ↓ ↓ ↓</br>
+			<%= link_to new_user_registration_path do %>
+				<div class="btn btn-success btn-lg" style="text-align:center;">新規会員登録</div>
+			<% end %>
+			</h1>
+			<h1>会員様はこちら！</br>
+			↓ ↓ ↓ ↓</br>
+			<%= link_to new_user_session_path do %>
+				<div class="btn btn-primary btn-lg" style="text-align:center;">ログイン</div>
+			<% end %>
+			</h1>
+		</div>
+		<div class="col-xs-6" style="text-align:center; color:black; ">
+			<h1>ところで…</br>
+			<%= link_to home_about_path do %>
+				<div class="btn btn-warning btn-lg" style="text-align:center; color:black;">TORI-SUKIってなに？？</div>
+			<% end %>
+			</h1>
+		</div>
+	</div>
+	</div>
+</div>
