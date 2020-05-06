@@ -26,6 +26,15 @@ class UsersController < ApplicationController
   def withdrawal
   end
 
+  def hide
+    @user = User.find(params[:id])
+    #↓deleted_atカラムにフラグを立てる（デフォルトはfalse)
+    @user.update(deleted_at: true)
+    #↓ログアウトさせる
+    reset_session
+    redirect_to root_path
+  end
+
   def follow_list
     @user = User.find(params[:user_id])
   end

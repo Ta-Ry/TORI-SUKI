@@ -36,4 +36,8 @@ class User < ApplicationRecord
   	Relationship.where(follower_id: user.id)
   end
 
+  def active_for_authentication?
+    super && (self.deleted_at == false)
+  end
+
 end
