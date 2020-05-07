@@ -1,0 +1,16 @@
+<tr id="comment_<%= post_comment.id %>">
+  <td class="comment-avatar">
+    <div class="avatar">
+      <%= attachment_image_tag post_comment.user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %>
+    </div>
+    <% if post_comment.user_id == current_user.id %>
+      <div><%= link_to "コメント削除", post_post_comments_path(post_comment.post_id, id: post_comment.id), method: :delete, remote: true, class:"btn btn-danger", data: { confirm: '本当に消しますか？' } %></div>
+    <% end %>
+  </td>
+  <td class="comment-text">
+    <div class="comment-author clearfix">
+      <a class="link-author"><%= post_comment.user.name %></a>
+    </div>
+  <td class="comment-entry"><%= post_comment.comment %></td>
+  </td>
+</tr>

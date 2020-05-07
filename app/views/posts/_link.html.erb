@@ -84,6 +84,7 @@
     <div class="field">
       <%= f.label :タグ %>(,を打つと複数登録できます)<br>
       <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "main_comment col-xs-12" %>
+      <%#= f.select(@search_content, :search_method, [["鳥自慢","鳥自慢"], ["おすすめの餌","おすすめの餌"], ["おすすめグッズ","おすすめグッズ"], ["迷い鳥情報","迷い鳥情報"]])%>
     </div>
     <div class="actions">
       <%= f.submit "投稿", :class=>"col-xs-12 btn btn-primary"%>
