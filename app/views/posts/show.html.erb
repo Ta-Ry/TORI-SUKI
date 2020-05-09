@@ -19,10 +19,10 @@
               <td>
                 <%= link_to user_path(@post.user.id) do %>
                 <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, class: "pull-left profile-thumb", fallback: "no_image.jpg" %>
-                <br>
-                <%= @user.name %>
-
                 <% end %>
+              </td>
+              <td>
+                <%= @user.name %>
               </td>
               <td>
                <p class="main_comment">
@@ -45,8 +45,8 @@
           </tbody>
         </table>
         <div>
-              <p class="opinion", style="">
-                <%= attachment_image_tag @post, :post_image, :fill, 500, 500, class: "pull-left profile-thumb" %>
+              <p class="opinion", style="text-align:center;">
+                <%= attachment_image_tag @post, :post_image, :fill, 500, 500, class: "profile-thumb" %>
               </p>
         </div>
         <div>

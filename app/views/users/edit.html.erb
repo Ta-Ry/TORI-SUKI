@@ -16,33 +16,44 @@
 
 
       <%= form_for(@user) do |f| %>
+      <table class="table">
 
       <div class="field">
-        <%= f.label :ニックネーム %>
-        <%= f.text_field :name %>
+        <tr>
+          <th><%= f.label :名前 %></th>
+          <th><%= f.text_field :name %></th>
+        </tr>
       </div>
       <div class="field">
-        <%= f.label :アイコン画像 %><br>
-        <%= f.attachment_field :profile_image %>
+        <tr>
+          <th><%= f.label :アイコン画像 %></th>
+          <th><%= f.attachment_field :profile_image %></th>
+        </tr>
       </div>
       <div class="field">
-        <%= f.label :自己紹介 %>
-        <%= f.text_area :introduction %>
+        <tr>
+          <th><%= f.label :自己紹介 %></th>
+          <th><%= f.text_field :introduction %></th>
+        </tr>
       </div>
       <div class="field">
-        <%= f.label :メールアドレス %>
-        <%= f.email_field :email %>
+        <tr>
+          <th><%= f.label :メールアドレス %></th>
+          <th><%= f.email_field :email %></th>
+        </tr>
       </div>
-
       <div class="field">
-        <%= f.label :電話番号 %>
-        <%= f.text_field :phone_number %>
+        <tr>
+          <th><%= f.label :電話番号 %></th>
+          <th><%= f.text_field :phone_number %></th>
+        </tr>
       </div>
-
-      <div class="actions">
-        <%= f.submit "会員情報更新" %>
-      </div>
-      <% end %>
+      <tr>
+          <th><%= f.submit "変更内容を保存する", class: "btn btn-primary" %></th>
+          <th><%= link_to "退会する", users_withdrawal_path(current_user), class: "btn btn-danger" %></th>
+      </tr>
+    </table>
+    <% end %>
     </div>
   </div>
 </div>

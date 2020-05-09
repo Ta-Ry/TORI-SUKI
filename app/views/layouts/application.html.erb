@@ -12,30 +12,22 @@
 </head>
 
 <body>
-  <header>
-    <nav class="navbar navbar-default" style="background-color: #FFDDFF; margin-bottom: 0px;">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <p class="navbar-brand">ロゴ追加予定地</p>
-        </div>
-        <div id="navbarEexample7">
-          <a class="navbar-logo" href="/" style="background-color: #C0C0C0;">
-            ここのロゴはlink持ち
-          </a>
-          <div class="row">
-          <div class="col-xs-8 col-xs-offset-3">
+  <header style="background-color: #FFCCFF;">
+        <a href="/" style="background-color: #C0C0C0;">
+            <%= image_tag('logo2020.jpg') %>
+        </a>
+          <div id="panel">
           <ul class="nav navbar-nav navbar-right" style="padding-right: 20px;">
             <% if user_signed_in? %>
-            <p class="navbar-text" style="color:black; font-size: 20px; font-family: Hannari;"><%= current_user.name %> でログイン中 </p>
+            <p class="navbar-text" style="color:black; font-size: 20px; font-family: Hannari;"><%= current_user.name %></br>でログイン中 </p>
               <li><%= link_to "TOPページへ" , posts_path %></li>
               <li><%= link_to "TORI-SUKIとは？" , home_about_path %></li>
               <li><%= link_to "鳥の病院" , home_bird_hospital_path %></li>
               <li><%= link_to "迷い鳥情報" , home_lost_bird_path %></li>
               <li><%= link_to "マイページ", user_path(current_user.id) %></li>
-              <!-- <li><%= link_to "登録情報編集", edit_user_path(current_user.id) %></li> -->
               <li><%= link_to "お問合せ", home_contact_path %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-              <li><%= link_to "退会", users_withdrawal_path(current_user) %></li>
+
             <% else %>
               <li><%= link_to "TOPページへ" , root_path %></li>
               <li><%= link_to "TORI-SUKIとは？" , home_about_path %></li>
@@ -46,10 +38,9 @@
             <% end %>
           </ul>
           </div>
+          <div class="open">
+            <i class="fas fa-kiwi-bird"> めにゅー</i>
           </div>
-        </div>
-      </div>
-    </nav>
   </header>
 
     <div class="" style="background-color: #AEFFBD;">
@@ -68,3 +59,34 @@
   </div>
 </body>
 </html>
+
+<script>
+  $('.open').click(function() {
+    $("#panel").animate({
+        width: 'toggle'
+    }, 100);
+});
+</script>
+
+<style>
+#panel
+{
+     height: 480px;
+     width: 200px;
+    padding:20px;
+     background: #eee;
+     float: right;
+     display: none;
+     color: #666;
+}
+.open
+{
+     height: 75px;
+     width: 180px;
+     background: #FF3333;
+    padding:20px;
+     float: right;
+    color:white;
+    font-size: 24px;
+}
+</style>

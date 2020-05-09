@@ -12,7 +12,7 @@
 <% end %>
 
     <div class="col-xs-9">
-<h2>投稿</h2>
+<h2>みんなの投稿</h2>
 <table class="table">
   <thead>
     <tr>
@@ -31,12 +31,14 @@
           <%= attachment_image_tag post.user, :profile_image, :fill, 100, 100, class: "pull-left profile-thumb", fallback: "no_image.jpg" %>
           <% end %>
         </td>
-        <td>
+        <td class="comment">
            <%= link_to post_path(post.id) do %>
            <%= post.main_comment %>
            <% end %>
         </td>
-        <td><%= attachment_image_tag post, :post_image, :fill, 100, 100, class: "pull-left profile-thumb" %></td>
+        <td>
+          <%= attachment_image_tag post, :post_image, :fill, 100, 100, class: "pull-left profile-thumb" %>
+        </td>
         <td id="favorite-<%= post.id %>">
           <%= render partial: "favorite", locals: { post: post } %>
        </td>
@@ -45,7 +47,7 @@
        </td>
        <td>
          <div>
-           <a>コメント数: <%= post.post_comments.count %></a>
+           コメント数: <%= post.post_comments.count %>
          </div>
        </td>
       </tr>
@@ -56,3 +58,11 @@
     <%= render 'posts/link', post: Post.new, user: @user %>
   </div>
 </div>
+
+<style>
+  .comment
+  {
+    height: 100%;
+    width: 250px;
+  }
+</style>
