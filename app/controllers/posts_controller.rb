@@ -37,6 +37,16 @@ class PostsController < ApplicationController
   	redirect_to posts_path
   end
 
+  def favorite_list
+    @posts = Post.all
+    @post = Post.new
+    @user = current_user
+    @favorite = Favorite.where(user_id: current_user)
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}")
+    end
+  end
+
   private
 
   def post_params

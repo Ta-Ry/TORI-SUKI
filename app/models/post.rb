@@ -7,6 +7,7 @@ class Post < ApplicationRecord
   	has_many :post_comments, dependent: :destroy
   	attachment :post_image
   	acts_as_taggable
+
 	validates :main_comment, presence: true, length: {maximum: 200}
 	validates :tag_list, presence: true
 end

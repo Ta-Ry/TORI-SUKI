@@ -4,33 +4,40 @@
 
     <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, class: "pull-left profile-thumb", fallback: "no_image.jpg" %>
     <table class="table">
-      <tbody>
-        <tr>
-      	 <th><p>ニックネーム</p></th>
-          <th><p><%= user.name %></p></th>
-        </tr>
-        <tr>
-          <th><p>自己紹介</p></th>
-          <th><p><%= user.introduction %></p></th>
-        </tr>
-        <tr>
-          <th>
-            <div>
+      <tr>
+      	<th><p>ニックネーム</p></th>
+        <th><p><%= user.name %></p></th>
+      </tr>
+      <tr>
+        <th><p>自己紹介</p></th>
+        <th><p><%= user.introduction %></p></th>
+      </tr>
+      <tr>
+        <th>
+          <div>
             <%= link_to follow_list_path(user) do %>
-            <label>フォロー数: </label> <%= user.follow_count(user).count %>
+              <label>フォロー数: </label> <%= user.follow_count(user).count %>
             <% end %>
-        </div>
-          </th>
-        </tr>
-        <tr>
-          <th>
-            <div>
+          </div>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <div>
             <%= link_to follower_list_path(user) do %>
-            <label>フォロワー数: </label> <%= user.follower_count(user).count %>
+              <label>フォロワー数: </label> <%= user.follower_count(user).count %>
             <% end %>
-        </div>
-          </th>
-        </p></th>
+          </div>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <div>
+            <%= link_to favorite_list_path(user) do %>
+              <label>いいね: </label> <%= user.favorites.count %>
+            <% end %>
+          </div>
+        </th>
       </tr>
     </table>
     <div class="row">
@@ -84,7 +91,9 @@
     <div class="field">
       <%= f.label :タグ %>(,を打つと複数登録できます)<br>
       <%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "main_comment col-xs-12" %>
-      <%#= f.select(@search_content, :search_method, [["鳥自慢","鳥自慢"], ["おすすめの餌","おすすめの餌"], ["おすすめグッズ","おすすめグッズ"], ["迷い鳥情報","迷い鳥情報"]])%>
+    </div>
+    <div class="field">
+      <%= f.select(:tag_list, [["鳥自慢","鳥自慢"], ["おすすめの餌","おすすめの餌"], ["おすすめグッズ","おすすめグッズ"], ["迷い鳥情報","迷い鳥情報"]], :prompt => "選択してください" )%>
     </div>
     <div class="actions">
       <%= f.submit "投稿", :class=>"col-xs-12 btn btn-primary"%>
