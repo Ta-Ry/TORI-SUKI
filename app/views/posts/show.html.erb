@@ -12,7 +12,12 @@
       <div class="blog-box-content">
         <table class="table">
           <thead>
-            <tr></tr>
+            <tr>
+              <th></th>
+              <th>投稿者名</th>
+              <th>投稿内容</th>
+              <th colspan="3"></th>
+            </tr>
           </thead>
           <tbody>
             <tr>
@@ -25,7 +30,7 @@
                 <%= @user.name %>
               </td>
               <td>
-               <p class="main_comment">
+               <p class="comment">
                  <%= link_to post_path(@post) do %>
                  <%= @post.main_comment %>
                  <% end %>
@@ -39,13 +44,13 @@
                 <%= render 'posts/tag_list', tag_list: @post.tag_list %>
               </td>
               <% if @post.user.id == current_user.id %>
-              <td><%= link_to 'Destroy', post_path(@post), method: :delete, class:"btn btn-danger", data: { confirm: '本当に消しますか？' } %></td>
+              <td><%= link_to 'コメント削除', post_path(@post), method: :delete, class:"btn btn-danger", data: { confirm: '本当に消しますか？' } %></td>
               <% end %>
             </tr>
           </tbody>
         </table>
         <div>
-              <p class="opinion", style="text-align:center;">
+              <p class="image", style="text-align:center;">
                 <%= attachment_image_tag @post, :post_image, :fill, 500, 500, class: "profile-thumb" %>
               </p>
         </div>
@@ -78,3 +83,16 @@
   <%= render 'posts/link', post: Post.new, user: @user %>
 </div>
 </div>
+
+<style>
+  .image
+  {
+    height: 100%;
+    width: 100%;
+  }
+  .comment
+  {
+    height: 100%;
+    width: 250px;
+  }
+</style>
