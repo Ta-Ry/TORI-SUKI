@@ -10,4 +10,12 @@ class Post < ApplicationRecord
 
 	validates :main_comment, presence: true, length: {maximum: 200}
 	validates :tag_list, presence: true
+
+  def self.search(search)
+    if search
+      Post.where(['main_comment LIKE ?', "%#{search}%"])
+    else
+      Post.all
+    end
+  end
 end

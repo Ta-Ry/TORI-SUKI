@@ -12,14 +12,22 @@
 </head>
 
 <body>
-  <header style="background-color: #FFCCFF;">
+  <header style="background-color: #FF1A6F;">
         <a href="/" style="background-color: #C0C0C0;">
-            <%= image_tag('logo2020.jpg') %>
+            <%= image_tag('logo.jpg') %>
         </a>
           <div id="panel">
           <ul class="nav navbar-nav navbar-right" style="padding-right: 20px;">
             <% if user_signed_in? %>
             <p class="navbar-text" style="color:black; font-size: 20px; font-family: Hannari;"><%= current_user.name %></br>でログイン中 </p>
+              <div>
+                <%= form_tag(search_path,:method => 'get') do %>
+                <%= text_field_tag :search_search %>
+                <span>
+                  <%= submit_tag '投稿検索', :name => nil %>
+                </span>
+                <% end %>
+              </div>
               <li><%= link_to "TOPページへ" , posts_path %></li>
               <li><%= link_to "TORI-SUKIとは？" , home_about_path %></li>
               <li><%= link_to "鳥の病院" , home_bird_hospital_path %></li>
@@ -43,7 +51,7 @@
           </div>
   </header>
 
-    <div class="" style="background-color: #AEFFBD;">
+    <div class="" style="background-color: #B6FF01;">
     <%= yield %>
 
     <footer class="footer">
@@ -56,7 +64,7 @@
         </div>
       </div>
     </footer>
-  </div>
+    </div>
 </body>
 </html>
 
@@ -71,7 +79,7 @@
 <style>
 #panel
 {
-     height: 480px;
+     height: 530px;
      width: 200px;
     padding:20px;
      background: #eee;
@@ -83,7 +91,7 @@
 {
      height: 75px;
      width: 180px;
-     background: #FF3333;
+     background: #2C7CFF;
     padding:20px;
      float: right;
     color:white;
