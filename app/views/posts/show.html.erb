@@ -50,7 +50,7 @@
           </tbody>
         </table>
         <div>
-              <p class="image", style="text-align:center;">
+              <p class="post_image", style="text-align:center;">
                 <%= attachment_image_tag @post, :post_image, :fill, 500, 500, class: "profile-thumb" %>
               </p>
         </div>
@@ -74,25 +74,12 @@
 
         </div>
         <div>
-        <% if user_signed_in? %>
-        <%= render partial: 'comment', locals: { post: @post, post_comment: @post_comment } %>
-        <% end %>
+          <% if user_signed_in? %>
+          <%= render partial: 'comment', locals: { post: @post, post_comment: @post_comment } %>
+          <% end %>
+        </div>
       </div>
     </div>
+    <%= render 'posts/link', post: Post.new, user: @user %>
   </div>
-  <%= render 'posts/link', post: Post.new, user: @user %>
 </div>
-</div>
-
-<style>
-  .image
-  {
-    height: 100%;
-    width: 100%;
-  }
-  .comment
-  {
-    height: 100%;
-    width: 250px;
-  }
-</style>

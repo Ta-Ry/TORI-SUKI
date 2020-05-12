@@ -37,4 +37,50 @@
 .top
 {
 	background-image: image-url("S__12058642.jpg");
+	height: 950px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 20px;
+	background-size: cover;
+	background-position: center;
+}
+.BOX
+{
+	width: 80px;
+	height: 40px;
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	background-color: #FFFFAA;
+	padding: 10px;
+}
+#panel
+{
+	height: 530px;
+	width: 200px;
+	padding:20px;
+	background: #eee;
+	float: right;
+	display: none;
+	color: #666;
+}
+.open
+{
+    height: 75px;
+    width: 180px;
+    background: #2C7CFF;
+    padding:20px;
+    float: right;
+    color:white;
+    font-size: 24px;
+}
+.comment
+{
+    height: 100%;
+    width: 250px;
+}
+.post_image
+{
+  height: 100%;
+  width: 100%;
 }
