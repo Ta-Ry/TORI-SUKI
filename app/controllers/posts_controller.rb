@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   	@post = Post.new(post_params)
   	@post.user_id = current_user.id
   	if @post.save
-  		flash[:notice] = "You have created post successfully."
+  		flash[:notice] = "無事投稿できました！"
   	    redirect_to post_path(@post)
   	else
   		@posts = Post.all
