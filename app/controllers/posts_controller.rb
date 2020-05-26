@@ -22,6 +22,21 @@ class PostsController < ApplicationController
   	@post = Post.new(post_params)
   	@post.user_id = current_user.id
   	if @post.save
+      tags = Vision.get_image_data(@post.post_image)
+      tags.each do |tag|
+
+        #targetTag = Tag.find_by(name: tag)
+        #@post.taggings.create()
+        #若干力技で下の方法でない場合は上記２行を使用
+
+        if Post.tagged_with(tag).exists?
+          @post.tag_list.add(tag)
+          @post.save
+          #一度追加し保存は効率は悪いよ
+        else
+          @post.tags.create(name: tag)
+        end
+      end
   		flash[:notice] = "無事投稿できました！"
   	    redirect_to post_path(@post)
   	else
@@ -50,6 +65,12 @@ class PostsController < ApplicationController
   def search
     #Viewのformで取得したパラメータをモデルに渡す
     @posts = Post.search(params[:search])
+  end
+  def all_tag
+    @tags = Post.all_tags
+    if params[:tag_name]
+      @posts = Post.tagged_with("#{params[:tag_name]}")
+    end
   end
 
   private
