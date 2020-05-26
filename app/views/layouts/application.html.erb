@@ -9,17 +9,25 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/earlyaccess/hannari.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@900&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <header style="background-color: #FF1A6F;">
+      <% if user_signed_in? %>
+        <a href="/posts" style="background-color: #C0C0C0;">
+            <%= image_tag('logo.jpg') %>
+        </a>
+      <% else %>
         <a href="/" style="background-color: #C0C0C0;">
             <%= image_tag('logo.jpg') %>
         </a>
+      <% end %>
           <div id="panel">
           <ul class="nav navbar-nav navbar-right" style="padding-right: 20px;">
             <% if user_signed_in? %>
-            <p class="navbar-text" style="color:black; font-size: 20px; font-family: Hannari;"><%= current_user.name %></br>でログイン中 </p>
+            <p class="navbar-text" style="color:black; font-size: 20px; font-family: Nico Moji;"><%= current_user.name %></br>でログイン中 </p>
               <div>
                 <%= form_tag(search_path,:method => 'get') do %>
                 <%= text_field_tag :search_search %>
@@ -28,10 +36,10 @@
                 </span>
                 <% end %>
               </div>
+              <li><%= link_to "タグ一覧", all_tag_path %></li>
               <li><%= link_to "TOPページへ" , posts_path %></li>
               <li><%= link_to "TORI-SUKIとは？" , home_about_path %></li>
               <li><%= link_to "鳥の病院" , home_bird_hospital_path %></li>
-              <li><%= link_to "迷い鳥情報" , home_lost_bird_path %></li>
               <li><%= link_to "マイページ", user_path(current_user.id) %></li>
               <li><%= link_to "お問合せ", home_contact_path %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
@@ -40,31 +48,29 @@
               <li><%= link_to "TOPページへ" , root_path %></li>
               <li><%= link_to "TORI-SUKIとは？" , home_about_path %></li>
               <li><%= link_to "鳥の病院" , home_bird_hospital_path %></li>
-              <li><%= link_to "迷い鳥情報" , home_lost_bird_path %></li>
               <li><%= link_to "新規登録" , new_user_registration_path %></li>
               <li><%= link_to "ログイン", user_session_path %></li>
             <% end %>
           </ul>
           </div>
           <div class="open">
-            <i class="fas fa-kiwi-bird"> めにゅー</i>
+            <i class="fas fa-kiwi-bird"><div style="font-family: Nico Moji;" > めにゅー</div></i>
           </div>
   </header>
 
-    <div class="" style="background-color: #B6FF01;">
-    <%= yield %>
+  <div class="" style="background-color: #B6FF01;">
+  <%= yield %>
 
-    <footer class="footer">
-      <div class="container">
-
-        <div class="row">
-          <div class='col-xs-3 col-xs-offset-9'>
-            <p>powered by TORI-SUKI運営</p>
-          </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class='col-xs-3 col-xs-offset-9'>
+          <p>ぱわーど ばい TORI-SUKI運営</p>
         </div>
       </div>
-    </footer>
     </div>
+  </footer>
+  </div>
 </body>
 </html>
 

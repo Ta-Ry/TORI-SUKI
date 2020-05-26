@@ -34,6 +34,12 @@
 	background-size: cover;
 	background-image: image-url("o641a5ba9dd77bfbb090fa3334d68c905_57162103_200507_0097.jpg");
 }
+.about4
+{
+	background: top;
+	background-size: cover;
+	background-image: image-url("o641a5ba9dd77bfbb090fa3334d68c905_57371782_200513_0225.jpg");
+}
 .top
 {
 	background-image: image-url("S__12058642.jpg");
@@ -43,22 +49,24 @@
 	padding: 20px;
 	background-size: cover;
 	background-position: center;
+	font-family: 'M PLUS 1p', sans-serif;
 }
 .BOX
 {
-	width: 80px;
+	width: 90px;
 	height: 40px;
 	float: left;
 	margin-right: 20px;
 	margin-bottom: 20px;
 	background-color: #FFFFAA;
 	padding: 10px;
+	border-left:8px solid #ccc;
 }
 #panel
 {
 	height: 530px;
-	width: 200px;
-	padding:20px;
+	width: 180px;
+	padding:10px;
 	background: #eee;
 	float: right;
 	display: none;
@@ -67,20 +75,25 @@
 .open
 {
     height: 75px;
-    width: 180px;
+    width: 120px;
     background: #2C7CFF;
     padding:20px;
     float: right;
     color:white;
     font-size: 24px;
+    font-family: Nico Moji;
 }
 .comment
 {
     height: 100%;
     width: 250px;
 }
-.post_image
+.tag
 {
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 50px;
+}
+h2
+{
+	font-family: 'M PLUS 1p', sans-serif;
 }
