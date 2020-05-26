@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   get 'home/top'
   get 'home/about'
   get 'home/bird_hospital'
-  get 'home/lost_bird'
   get 'home/contact'
   devise_for :users
   get 'users/follow_list/:user_id' => 'users#follow_list', as: 'follow_list'
   get 'users/follower_list/:user_id' => 'users#follower_list', as: 'follower_list'
   get 'posts/favorite_list/:user_id' => 'posts#favorite_list', as: 'favorite_list'
   get 'users/withdrawal', to: 'users#withdrawal'
+  get 'posts/all_tag', to: 'posts#all_tag', as: 'all_tag'
   put "/users/:id/hide" => "users#hide", as: 'users_hide'
   get 'search/search' => 'search#search', as: 'search'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
