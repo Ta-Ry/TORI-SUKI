@@ -8,9 +8,6 @@ class HomeController < ApplicationController
   def bird_hospital
   end
 
-  def lost_bird
-  end
-
   def contact
   end
 end
