@@ -30,17 +30,16 @@
                 <%= @user.name %>
               </td>
               <td>
-               <p class="comment">
+                <p class="comment">
                  <%= link_to post_path(@post) do %>
                  <%= @post.main_comment %>
                  <% end %>
-               </p>
-             </td>
-
+                </p>
+              </td>
               <td id="favorite-<%= @post.id %>">
                 <%= render partial: "favorite", locals: { post: @post } %>
               </td>
-              <td>
+              <td  class="tag">
                 <%= render 'posts/tag_list', tag_list: @post.tag_list %>
               </td>
               <% if @post.user.id == current_user.id %>

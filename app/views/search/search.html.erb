@@ -23,10 +23,20 @@
           	<%= post.main_comment %>
           	<% end %>
           </td>
-          <td><%= attachment_image_tag post, :post_image, :fill, 100, 100, class: "pull-left profile-thumb" %></td>
-            <td><a><%= link_to '詳細', post_path(post) %></a></td>
-          </tr>
-          <% end %>
+          <td><%= attachment_image_tag post, :post_image, :fill, 100, 100, class: "pull-left profile-thumb" %>
+          </td>
+          <td>
+            <a><%= link_to '詳細', post_path(post) %></a>
+          </td>
+          <td id="favorite-<%= post.id %>">
+            <%= render partial: "posts/favorite", locals: { post: post } %>
+          </td>
+          <td  class="tag">
+            <%= render 'posts/tag_list', tag_list: post.tag_list %>
+          </td>
+        </tr>
+        <% end %>
+
   		</tbody>
   	</table>
   </div>
