@@ -21,20 +21,29 @@ class PostsController < ApplicationController
   def create
   	@post = Post.new(post_params)
   	@post.user_id = current_user.id
+
+    project_id = ENV["CLOUD_PROJECT_ID"]
+      # Instantiates a client
+      translate   = Google::Cloud::Translate.new version: :v2, project_id: project_id
+      # The target language
+      target = "ja"
+
   	if @post.save
       tags = Vision.get_image_data(@post.post_image)
       tags.each do |tag|
+        # Translates some text into Japanese
+      translated_tag = translate.translate tag, to: target
 
         #targetTag = Tag.find_by(name: tag)
         #@post.taggings.create()
         #若干力技で下の方法でない場合は上記２行を使用
 
-        if Post.tagged_with(tag).exists?
-          @post.tag_list.add(tag)
+        if Post.tagged_with(translated_tag).exists?
+          @post.tag_list.add(translated_tag)
           @post.save
           #一度追加し保存は効率は悪いよ
         else
-          @post.tags.create(name: tag)
+          @post.tags.create(name: translated_tag)
         end
       end
   		flash[:notice] = "無事投稿できました！"

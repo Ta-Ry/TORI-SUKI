@@ -75,4 +75,5 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
-
+gem "google-cloud"
+gem "google-cloud-translate"

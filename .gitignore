@@ -33,3 +33,5 @@
 .DS_Store
 
 /.env
+/config/local_env.yml
+/config/google_cloud.json
