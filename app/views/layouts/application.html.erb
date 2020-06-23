@@ -15,47 +15,46 @@
 
 <body>
   <header style="background-color: #FF1A6F;">
-      <% if user_signed_in? %>
-        <a href="/posts" style="background-color: #C0C0C0;">
-            <%= image_tag('logo.jpg') %>
-        </a>
-      <% else %>
-        <a href="/" style="background-color: #C0C0C0;">
-            <%= image_tag('logo.jpg') %>
-        </a>
-      <% end %>
-          <div id="panel">
-          <ul class="nav navbar-nav navbar-right" style="padding-right: 20px;">
-            <% if user_signed_in? %>
-            <p class="navbar-text" style="color:black; font-size: 20px; font-family: Nico Moji;"><%= current_user.name %></br>でログイン中 </p>
-              <div>
-                <%= form_tag(search_path,:method => 'get') do %>
-                <%= text_field_tag :search_search %>
-                <span>
-                  <%= submit_tag '投稿検索', :name => nil %>
-                </span>
-                <% end %>
-              </div>
-              <li><%= link_to "タグ一覧", all_tag_path %></li>
-              <li><%= link_to "TOPページへ" , posts_path %></li>
-              <li><%= link_to "TORI-SUKIとは？" , home_about_path %></li>
-              <li><%= link_to "鳥の病院" , home_bird_hospital_path %></li>
-              <li><%= link_to "マイページ", user_path(current_user.id) %></li>
-              <li><%= link_to "お問合せ", home_contact_path %></li>
-              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-
-            <% else %>
-              <li><%= link_to "TOPページへ" , root_path %></li>
-              <li><%= link_to "TORI-SUKIとは？" , home_about_path %></li>
-              <li><%= link_to "鳥の病院" , home_bird_hospital_path %></li>
-              <li><%= link_to "新規登録" , new_user_registration_path %></li>
-              <li><%= link_to "ログイン", user_session_path %></li>
+    <% if user_signed_in? %>
+      <a href="/posts" style="background-color: #C0C0C0;">
+          <%= image_tag('logo.jpg') %>
+      </a>
+    <% else %>
+      <a href="/" style="background-color: #C0C0C0;">
+          <%= image_tag('logo.jpg') %>
+      </a>
+    <% end %>
+      <div id="panel">
+        <ul class="nav navbar-nav navbar-right" style="padding-right: 20px;">
+        <% if user_signed_in? %>
+          <p class="navbar-text" style="color:black; font-size: 20px; font-family: Nico Moji;"><%= current_user.name %></br>でログイン中 </p>
+          <div>
+            <%= form_tag(search_path,:method => 'get') do %>
+            <%= text_field_tag :search_search %>
+            <span>
+              <%= submit_tag '投稿検索', :name => nil %>
+            </span>
             <% end %>
-          </ul>
           </div>
-          <div class="open">
-            <i class="fas fa-kiwi-bird"><div style="font-family: Nico Moji;" > めにゅー</div></i>
-          </div>
+          <li><%= link_to "タグ一覧", all_tag_path %></li>
+          <li><%= link_to "TOPページへ" , posts_path %></li>
+          <li><%= link_to "TORI-SUKIとは？" , home_about_path %></li>
+          <li><%= link_to "鳥の病院" , home_bird_hospital_path %></li>
+          <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+          <li><%= link_to "お問合せ", home_contact_path %></li>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "TOPページへ" , root_path %></li>
+          <li><%= link_to "TORI-SUKIとは？" , home_about_path %></li>
+          <li><%= link_to "鳥の病院" , home_bird_hospital_path %></li>
+          <li><%= link_to "新規登録" , new_user_registration_path %></li>
+          <li><%= link_to "ログイン", user_session_path %></li>
+        <% end %>
+        </ul>
+      </div>
+    <div class="open">
+      <i class="fas fa-kiwi-bird"><div style="font-family: Nico Moji;" > めにゅー</div></i>
+    </div>
   </header>
 
   <div class="" style="background-color: #B6FF01;">
