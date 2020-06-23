@@ -62,6 +62,7 @@ class PostsController < ApplicationController
 
   def all_tag
     @tags = Post.all_tags
+    @tags = @tags.where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
   end
 
   private
