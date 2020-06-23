@@ -9,6 +9,7 @@ class Post < ApplicationRecord
   	acts_as_taggable
 
 	validates :main_comment, presence: true, length: {maximum: 200}
+  validates :post_image_id, presence: true
 
   def self.search(search)
     if search
